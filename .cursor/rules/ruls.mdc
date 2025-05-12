@@ -1,0 +1,31 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+1. 这是一个普通的表单生成器项目， 
+2. 使用的技术是 vue3+ElementPlus
+3. 需要更改为和基于/rendererCOmponent 下的 QueryComponent渲染的组件
+4. 当前生成的文件为 1747015862220.vue 需要更改为nomalquery.vue 要求相似度为 95%
+5. 左侧拖入的组件需要更改为QueryComponent渲染的 inputType 的类型，如txt、text、file、select、dict、obj、vehicleDict、checkBoxGroup、radioGroup、dataRange、btn等,
+6. 需要注意配置 如properties: {
+    type: Array,
+    required: true
+  },
+  expand: {//是否 出现折叠按钮
+    type: Boolean,
+    default: true
+  },
+  resetbtnnoxhr: {//是否出现重置按钮
+    type: Boolean,
+    default: false
+  },
+  labelWidth: {
+    type: String,
+    default: '120px'
+  },
+  //控制查询 重置 展开收起按钮的隐藏   用于自定义查询 处理， 行内查询 处理
+  queryBtn: {
+    type: Boolean,
+    default: true
+  }

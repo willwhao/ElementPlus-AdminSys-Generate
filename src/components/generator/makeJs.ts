@@ -264,9 +264,10 @@ function buildexport(
 ) {
   /* 
   ${exportDefault}{ */
+  /*  const ${conf.formRef} = ref(null) */
   const str1 = `
 ${vueImportStgr}
-    const ${conf.formRef} = ref(null)
+   
     \n
     const ${conf.formModel} = ref({
       ${data}

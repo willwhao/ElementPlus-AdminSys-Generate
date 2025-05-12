@@ -38,14 +38,16 @@ function buildFormTemplate(scheme: any, child: any, type: any) {
   }
   const disabled = scheme.disabled ? `:disabled="${scheme.disabled}"` : ''
   let str = `<el-form ref="${scheme.formRef}" :model="${scheme.formModel}" :rules="${scheme.formRules}" size="${scheme.size}" ${disabled} label-width="${scheme.labelWidth}px" ${labelPosition}>
+     <el-row :gutter="20">
       ${child}
       ${buildFromBtns(scheme, type)}
+      </el-row>
     </el-form>`
   return str
 }
 
 function buildFromBtns(scheme: any, type: any) {
-  let str = ''
+    let str = ''
   if (scheme.formBtns && type === 'file') {
     str = `<el-form-item size="large">
           <el-button type="primary" @click="submitForm">提交</el-button>
@@ -84,11 +86,43 @@ const layouts = {
     }
     const required = !(ruleTrigger as any)[config.tag] && config.required ? 'required' : ''
     const tagDom = (tags as any)[config.tag] ? (tags as any)[config.tag](scheme) : null
-    let str = `<el-form-item ${labelWidth} ${label} prop="${scheme.__vModel__}" ${required}>
+
+    if (someSpanIsNot24 || scheme.__config__.span !== 24) {
+      return `<el-col :span="${scheme.__config__.span}">
+        <el-form-item ${labelWidth} ${label} prop="${scheme.__vModel__}" ${required} jjj>
+        ${tagDom}
+      </el-form-item>
+    </el-col>`
+    } else {
+      let str = `<el-form-item ${labelWidth} ${label} prop="${scheme.__vModel__}" ${required} kkk>
         ${colWrapper(scheme, tagDom)}
       </el-form-item>`
+    }
+
+    // let str = `<el-form-item ${labelWidth} ${label} prop="${scheme.__vModel__}" ${required} jkl>
+    //     ${colWrapper(scheme, tagDom)}
+    //   </el-form-item>`
     return str
   },
+  // 备份 互动
+  //   colFormItem(scheme: any) {
+  //     const config = scheme.__config__
+  //     let labelWidth = ''
+  //     let label = `label="${config.label}"`
+  //     if (config.labelWidth && config.labelWidth !== confGlobal.labelWidth) {
+  //       labelWidth = `label-width="${config.labelWidth}px"`
+  //     }
+  //     if (config.showLabel === false) {
+  //       labelWidth = 'label-width="0"'
+  //       label = ''
+  //     }
+  //     const required = !(ruleTrigger as any)[config.tag] && config.required ? 'required' : ''
+  //     const tagDom = (tags as any)[config.tag] ? (tags as any)[config.tag](scheme) : null
+  //     let str = `<el-form-item ${labelWidth} ${label} prop="${scheme.__vModel__}" ${required} jkl>
+  //         ${colWrapper(scheme, tagDom)}
+  //       </el-form-item>`
+  //     return str
+  //   },
   rowFormItem(scheme: any) {
     const config = scheme.__config__
     // const type = scheme.type === 'default' ? '' : `type="${scheme.type}"`
@@ -106,9 +140,7 @@ const layouts = {
 
 const tags = {
   'el-button': (el: any) => {
-    const {
-      tag, disabled
-    } = attrBuilder(el)
+    const { tag, disabled } = attrBuilder(el)
     const type = el.type ? `type="${el.type}"` : ''
     const icon = el.icon ? `icon="${el.icon}"` : ''
     const round = el.round ? 'round' : ''
@@ -121,9 +153,7 @@ const tags = {
     return `<${tag} ${type} ${icon} ${round} ${size} ${plain} ${disabled} ${circle}>${child}</${tag}>`
   },
   'el-input': (el: any) => {
-    const {
-      tag, disabled, vModel, clearable, placeholder, width
-    } = attrBuilder(el)
+    const { tag, disabled, vModel, clearable, placeholder, width } = attrBuilder(el)
     const maxlength = el.maxlength ? `:maxlength="${el.maxlength}"` : ''
     const showWordLimit = el['show-word-limit'] ? 'show-word-limit' : ''
     const readonly = el.readonly ? 'readonly' : ''
@@ -131,18 +161,14 @@ const tags = {
     const suffixIcon = el['suffix-icon'] ? `suffix-icon='${el['suffix-icon']}'` : ''
     const showPassword = el['show-password'] ? 'show-password' : ''
     const type = el.type ? `type="${el.type}"` : ''
-    const autosize = el.autosize && el.autosize.minRows
-      ? `:autosize="{minRows: ${el.autosize.minRows}, maxRows: ${el.autosize.maxRows}}"`
-      : ''
+    const autosize = el.autosize && el.autosize.minRows ? `:autosize="{minRows: ${el.autosize.minRows}, maxRows: ${el.autosize.maxRows}}"` : ''
     let child = buildElInputChild(el)
 
     if (child) child = `\n${child}\n` // 换行
     return `<${tag} ${vModel} ${type} ${placeholder} ${maxlength} ${showWordLimit} ${readonly} ${disabled} ${clearable} ${prefixIcon} ${suffixIcon} ${showPassword} ${autosize} ${width}>${child}</${tag}>`
   },
   'el-input-number': (el: any) => {
-    const {
-      tag, disabled, vModel, placeholder
-    } = attrBuilder(el)
+    const { tag, disabled, vModel, placeholder } = attrBuilder(el)
     const controlsPosition = el['controls-position'] ? `controls-position=${el['controls-position']}` : ''
     const min = el.min ? `:min='${el.min}'` : ''
     const max = el.max ? `:max='${el.max}'` : ''
@@ -153,9 +179,7 @@ const tags = {
     return `<${tag} ${vModel} ${placeholder} ${step} ${stepStrictly} ${precision} ${controlsPosition} ${min} ${max} ${disabled}></${tag}>`
   },
   'el-select': (el: any) => {
-    const {
-      tag, disabled, vModel, clearable, placeholder, width
-    } = attrBuilder(el)
+    const { tag, disabled, vModel, clearable, placeholder, width } = attrBuilder(el)
     const filterable = el.filterable ? 'filterable' : ''
     const multiple = el.multiple ? 'multiple' : ''
     let child = buildElSelectChild(el)
@@ -193,9 +217,7 @@ const tags = {
     return `<${tag} ${vModel} ${activeText} ${inactiveText} ${activeColor} ${inactiveColor} ${activeValue} ${inactiveValue} ${disabled}></${tag}>`
   },
   'el-cascader': (el: any) => {
-    const {
-      tag, disabled, vModel, clearable, placeholder, width
-    } = attrBuilder(el)
+    const { tag, disabled, vModel, clearable, placeholder, width } = attrBuilder(el)
     const options = el.options ? `:options="${el.__vModel__}Options"` : ''
     const props = el.props ? `:props="${el.__vModel__}Props"` : ''
     const showAllLevels = el['show-all-levels'] ? '' : ':show-all-levels="false"'
@@ -215,9 +237,7 @@ const tags = {
     return `<${tag} ${min} ${max} ${step} ${vModel} ${range} ${showStops} ${disabled}></${tag}>`
   },
   'el-time-picker': (el: any) => {
-    const {
-      tag, disabled, vModel, clearable, placeholder, width
-    } = attrBuilder(el)
+    const { tag, disabled, vModel, clearable, placeholder, width } = attrBuilder(el)
     const startPlaceholder = el['start-placeholder'] ? `start-placeholder="${el['start-placeholder']}"` : ''
     const endPlaceholder = el['end-placeholder'] ? `end-placeholder="${el['end-placeholder']}"` : ''
     const rangeSeparator = el['range-separator'] ? `range-separator="${el['range-separator']}"` : ''
@@ -229,9 +249,7 @@ const tags = {
     return `<${tag} ${vModel} ${isRange} ${format} ${valueFormat} ${pickerOptions} ${width} ${placeholder} ${startPlaceholder} ${endPlaceholder} ${rangeSeparator} ${clearable} ${disabled}></${tag}>`
   },
   'el-date-picker': (el: any) => {
-    const {
-      tag, disabled, vModel, clearable, placeholder, width
-    } = attrBuilder(el)
+    const { tag, disabled, vModel, clearable, placeholder, width } = attrBuilder(el)
     const startPlaceholder = el['start-placeholder'] ? `start-placeholder="${el['start-placeholder']}"` : ''
     const endPlaceholder = el['end-placeholder'] ? `end-placeholder="${el['end-placeholder']}"` : ''
     const rangeSeparator = el['range-separator'] ? `range-separator="${el['range-separator']}"` : ''
@@ -261,7 +279,7 @@ const tags = {
   },
   'el-upload': (el: any) => {
     const { tag } = el.__config__
-    const disabled = el.disabled ? ':disabled=\'true\'' : ''
+    const disabled = el.disabled ? ":disabled='true'" : ''
     const action = el.action ? `:action="${el.__vModel__}Action"` : ''
     const multiple = el.multiple ? 'multiple' : ''
     const listType = el['list-type'] !== 'text' ? `list-type="${el['list-type']}"` : ''
@@ -291,7 +309,7 @@ function attrBuilder(el: any) {
     clearable: el.clearable ? 'clearable' : '',
     placeholder: el.placeholder ? `placeholder="${el.placeholder}"` : '',
     width: el.style && el.style.width ? ':style="{width: \'100%\'}"' : '',
-    disabled: el.disabled ? ':disabled=\'true\'' : ''
+    disabled: el.disabled ? ":disabled='true'" : ''
   }
 }
 

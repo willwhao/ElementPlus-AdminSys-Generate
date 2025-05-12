@@ -8,7 +8,7 @@ export const formConf = {
   formRules: 'rules',
   gutter: 15,
   disabled: false,
-  span: 24,
+  span: 8,
   formBtns: true
 }
 
@@ -17,36 +17,33 @@ export const inputComponents = [
   {
     // 组件的自定义配置
     __config__: {
-      label: '单行文本',
-      labelWidth: null,
-      showLabel: true,
-      changeTag: true,
-      tag: 'el-input',
-      tagIcon: 'input',
-      defaultValue: undefined,
-      required: true,
-      layout: 'colFormItem',
-      span: 24,
-      document: 'https://element.eleme.cn/#/zh-CN/component/input',
-      // 正则校验规则
-      regList: []
+      label: '单行文本', // 标签名称
+      labelWidth: null, // 标签宽度
+      showLabel: true, // 是否显示标签
+      changeTag: true, // 是否允许更改标签
+      tag: 'el-input', // 组件标签
+      tagIcon: 'input', // 组件图标
+      defaultValue: undefined, // 默认值
+      required: true, // 是否必填
+      layout: 'colFormItem', // 布局方式
+      span: 8, // 占据的列宽
+      document: 'https://element.eleme.cn/#/zh-CN/component/input', // 文档链接
+      regList: [] // 正则校验规则列表
     },
-    // 组件的插槽属性
     __slot__: {
-      prepend: '',
-      append: ''
+      prepend: '', // 前置内容
+      append: '' // 后置内容
     },
-    __vModel__: "firends1",
-    // 其余的为可直接写在组件标签上的属性
-    placeholder: '请输入',
-    style: { width: '100%' },
-    clearable: true,
-    'prefix-icon': '',
-    'suffix-icon': '',
-    maxlength: null,
-    'show-word-limit': false,
-    readonly: false,
-    disabled: false
+    __vModel__: "firends1", // 绑定的v-model属性
+    placeholder: '请输入', // 占位符
+    style: { width: '100%' }, // 样式
+    clearable: true, // 是否可清空
+    'prefix-icon': '', // 前缀图标
+    'suffix-icon': '', // 后缀图标
+    maxlength: null, // 最大输入长度
+    'show-word-limit': false, // 是否显示字数限制
+    readonly: false, // 是否只读
+    disabled: false // 是否禁用
   },
   {
     __config__: {
@@ -58,7 +55,7 @@ export const inputComponents = [
       defaultValue: undefined,
       required: true,
       layout: 'colFormItem',
-      span: 24,
+      span: 8,
       regList: [],
       changeTag: true,
       document: 'https://element.eleme.cn/#/zh-CN/component/input'
@@ -86,7 +83,7 @@ export const inputComponents = [
       tagIcon: 'password',
       defaultValue: undefined,
       layout: 'colFormItem',
-      span: 24,
+      span: 8,
       required: true,
       regList: [],
       document: 'https://element.eleme.cn/#/zh-CN/component/input'
@@ -116,7 +113,7 @@ export const inputComponents = [
       tag: 'el-input-number',
       tagIcon: 'number',
       defaultValue: undefined,
-      span: 24,
+      span: 8,
       layout: 'colFormItem',
       required: true,
       regList: [],
@@ -141,7 +138,7 @@ export const inputComponents = [
   //     tag: 'tinymce',
   //     tagIcon: 'rich-text',
   //     defaultValue: null,
-  //     span: 24,
+  //     span: 8,
   //     layout: 'colFormItem',
   //     required: true,
   //     regList: [],
@@ -163,7 +160,7 @@ export const selectComponents = [
       tag: 'el-select',
       tagIcon: 'select',
       layout: 'colFormItem',
-      span: 24,
+      span: 8,
       required: true,
       regList: [],
       changeTag: true,
@@ -200,7 +197,7 @@ export const selectComponents = [
       layout: 'colFormItem',
       defaultValue: [],
       dataType: 'dynamic',
-      span: 24,
+      span: 8,
       required: true,
       regList: [],
       changeTag: true,
@@ -242,7 +239,7 @@ export const selectComponents = [
       changeTag: true,
       defaultValue: undefined,
       layout: 'colFormItem',
-      span: 24,
+      span: 8,
       optionType: 'default',
       regList: [],
       required: true,
@@ -268,7 +265,7 @@ export const selectComponents = [
       tag: 'el-checkbox-group',
       tagIcon: 'checkbox',
       defaultValue: [],
-      span: 24,
+      span: 8,
       showLabel: true,
       labelWidth: null,
       layout: 'colFormItem',
@@ -300,7 +297,7 @@ export const selectComponents = [
       tag: 'el-switch',
       tagIcon: 'switch',
       defaultValue: false,
-      span: 24,
+      span: 8,
       showLabel: true,
       labelWidth: null,
       layout: 'colFormItem',
@@ -324,7 +321,7 @@ export const selectComponents = [
       tag: 'el-slider',
       tagIcon: 'slider',
       defaultValue: null,
-      span: 24,
+      span: 8,
       showLabel: true,
       layout: 'colFormItem',
       labelWidth: null,
@@ -346,7 +343,7 @@ export const selectComponents = [
       tag: 'el-time-picker',
       tagIcon: 'time',
       defaultValue: null,
-      span: 24,
+      span: 8,
       showLabel: true,
       layout: 'colFormItem',
       labelWidth: null,
@@ -370,7 +367,7 @@ export const selectComponents = [
       label: '时间范围',
       tag: 'el-time-picker',
       tagIcon: 'time-range',
-      span: 24,
+      span: 8,
       showLabel: true,
       labelWidth: null,
       layout: 'colFormItem',
@@ -398,7 +395,7 @@ export const selectComponents = [
       defaultValue: null,
       showLabel: true,
       labelWidth: null,
-      span: 24,
+      span: 8,
       layout: 'colFormItem',
       required: true,
       regList: [],
@@ -420,7 +417,7 @@ export const selectComponents = [
       tag: 'el-date-picker',
       tagIcon: 'date-range',
       defaultValue: null,
-      span: 24,
+      span: 8,
       showLabel: true,
       labelWidth: null,
       required: true,
@@ -446,7 +443,7 @@ export const selectComponents = [
       tag: 'el-rate',
       tagIcon: 'rate',
       defaultValue: 0,
-      span: 24,
+      span: 8,
       showLabel: true,
       labelWidth: null,
       layout: 'colFormItem',
@@ -467,7 +464,7 @@ export const selectComponents = [
       label: '颜色选择',
       tag: 'el-color-picker',
       tagIcon: 'color',
-      span: 24,
+      span: 8,
       defaultValue: null,
       showLabel: true,
       labelWidth: null,
@@ -492,7 +489,7 @@ export const selectComponents = [
       showLabel: true,
       labelWidth: null,
       required: true,
-      span: 24,
+      span: 8,
       showTip: false,
       buttonText: '点击上传',
       regList: [],
@@ -536,7 +533,7 @@ export const layoutComponents = [
       labelWidth: null,
       tag: 'el-button',
       tagIcon: 'button',
-      span: 24,
+      span: 8,
       layout: 'colFormItem',
       document: 'https://element.eleme.cn/#/zh-CN/component/button'
     },
@@ -557,7 +554,7 @@ export const layoutComponents = [
       tagIcon: 'table',
       tag: 'el-table',
       document: 'https://element.eleme.cn/#/zh-CN/component/table',
-      span: 24,
+      span: 8,
       formId: 101,
       renderKey: 1595761764203,
       componentName: 'row101',

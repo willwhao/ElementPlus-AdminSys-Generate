@@ -1,3 +1,4 @@
+<!-- 默认组件 -->
 <template>
   
 </template>
