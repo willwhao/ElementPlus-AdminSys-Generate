@@ -262,10 +262,10 @@ function buildexport(
   methods: string,
   created: string
 ) {
-  const str1 = `${vueImportStgr}
-  ${exportDefault}{
-  setup () {
-
+  /* 
+  ${exportDefault}{ */
+  const str1 = `
+${vueImportStgr}
     const ${conf.formRef} = ref(null)
     \n
     const ${conf.formModel} = ref({
@@ -278,19 +278,20 @@ function buildexport(
     \n
     ${
       selectOptions &&
-      `const ${selectOptions.split(":")[0]} = ref(
-      ${selectOptions.split("Options:")[1]}
+      `const ${selectOptions.split(':')[0]} = ref(
+      ${selectOptions.split('Options:')[1]}
     )`
     }
     \n
-    return {
+ `
+  /*    return {
       ${conf.formRules},
       ${conf.formModel},
-      ${selectOptions.split(":")[0]},
+      ${selectOptions.split(':')[0]},
       ${uploadVar}
       ${props}
     }
   }
-}`;
-  return str1;
+} */
+  return str1
 }
